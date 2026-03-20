@@ -1,0 +1,14 @@
+[
+  {
+    "name": "viento_dmc",
+    "path": "/Tables/dbo",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/viento_dmc",
+        "itemId": "c8d85fb5-7aac-43dd-8739-4e10cf845340",
+        "workspaceId": "65dd2fa9-b507-4f17-b97b-643e592de2da"
+      }
+    }
+  }
+]

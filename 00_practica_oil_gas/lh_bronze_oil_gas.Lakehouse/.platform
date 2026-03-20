@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "lh_bronze_oil_gas"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9028b952-055c-b32b-4284-03a740119c0e"
+  }
+}

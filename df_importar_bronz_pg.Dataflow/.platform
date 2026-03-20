@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "df_importar_bronz_pg"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "15a98f48-e609-b991-48bd-a72e0db4dc24"
+  }
+}
