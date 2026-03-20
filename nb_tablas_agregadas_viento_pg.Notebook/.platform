@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_tablas_agregadas_viento_pg"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7abe62e8-7688-9ef8-40cc-2a6fe2501144"
+  }
+}
