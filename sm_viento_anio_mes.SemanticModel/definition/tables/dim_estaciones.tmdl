@@ -1,0 +1,53 @@
+table dim_estaciones
+	lineageTag: 94781abe-ca6e-45d5-9428-7082b1487e68
+	sourceLineageTag: [dbo].[dim_estaciones]
+
+	column CodigoNacional
+		dataType: double
+		lineageTag: 95da56c0-17d9-4446-abcf-721a2aaa6aab
+		sourceLineageTag: CodigoNacional
+		summarizeBy: none
+		sourceColumn: CodigoNacional
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column latitud
+		dataType: double
+		lineageTag: d73f6ee6-839e-4c74-a4f1-f93ce2553185
+		sourceLineageTag: latitud
+		summarizeBy: none
+		sourceColumn: latitud
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitud
+		dataType: double
+		lineageTag: e4a8ffcf-e5f7-4487-a1f4-4fee2ddc2712
+		sourceLineageTag: longitud
+		summarizeBy: none
+		sourceColumn: longitud
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nombreEstacion
+		dataType: string
+		lineageTag: 610669a1-481d-4a26-a11d-15cadb24da5b
+		sourceLineageTag: nombreEstacion
+		summarizeBy: none
+		sourceColumn: nombreEstacion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_estaciones = entity
+		mode: directLake
+		source
+			entityName: dim_estaciones
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_silver_pg'
+

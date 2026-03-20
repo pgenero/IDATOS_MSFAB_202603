@@ -1,0 +1,150 @@
+table 'Kusto Query Result'
+	lineageTag: f3efc6c8-1467-40cd-b8e2-13686f9a7cfe
+
+	column UltimaActualizacion
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b2a2208b-47f6-430c-a7de-d7b026acea0e
+		summarizeBy: none
+		sourceColumn: UltimaActualizacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstadoCielo
+		dataType: string
+		lineageTag: 7d022e98-e78b-4109-89ef-419b21625143
+		summarizeBy: none
+		sourceColumn: EstadoCielo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Temperatura_C
+		dataType: double
+		lineageTag: 88b0b34e-bf28-472b-a3ab-7a5c9aec5eef
+		summarizeBy: sum
+		sourceColumn: Temperatura_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SensacionTermica_C
+		dataType: double
+		lineageTag: 902c650f-6cbe-41fd-b1d9-42f44d629d8e
+		summarizeBy: sum
+		sourceColumn: SensacionTermica_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HumedadRelativa_Porc
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b24a648-696b-48ac-bdc3-e21c6ad965c2
+		summarizeBy: sum
+		sourceColumn: HumedadRelativa_Porc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Viento_kmh
+		dataType: double
+		lineageTag: 1d30e29d-adfc-4042-829d-ec5d560d8616
+		summarizeBy: sum
+		sourceColumn: Viento_kmh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VientoDireccion
+		dataType: string
+		lineageTag: 11f312db-c00b-476a-a6b0-b1c5056bf741
+		summarizeBy: none
+		sourceColumn: VientoDireccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column RafagasViento_kmh
+		dataType: double
+		lineageTag: edb2fd3b-8602-43bd-9d7e-d32d75930bc3
+		summarizeBy: sum
+		sourceColumn: RafagasViento_kmh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Visibilidad_km
+		dataType: double
+		lineageTag: a9e6dd73-c1f0-4ec8-a8cd-fef44cc8a48e
+		summarizeBy: sum
+		sourceColumn: Visibilidad_km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LluviaUltimaHora_mm
+		dataType: double
+		lineageTag: 5248b3d8-aeb4-4957-a242-c17308c2dfa1
+		summarizeBy: sum
+		sourceColumn: LluviaUltimaHora_mm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PuntoRocio_C
+		dataType: double
+		lineageTag: b280a05e-fb7e-43e4-aeac-0743a6c33967
+		summarizeBy: sum
+		sourceColumn: PuntoRocio_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CondicionRunning
+		dataType: string
+		lineageTag: 38881719-c624-48ac-bd92-02a407464f1f
+		summarizeBy: none
+		sourceColumn: CondicionRunning
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Kusto Query Result' = m
+		mode: directQuery
+		source = ```
+				let
+				Source = AzureDataExplorer.Contents("https://trd-5x52gjsx3b3627ugmm.z0.kusto.fabric.microsoft.com", "1b17c5d2-adfd-48d6-811f-355a0a7bbac6", "tiempo_sfco_cba_ar
+				| extend FechaHora = todatetime(dateTime)
+				| where FechaHora >= startofday(now())
+				// Esto elimina duplicados exactos basados en la fecha y hora
+				| summarize arg_max(FechaHora, *) by FechaHora 
+				| project 
+				    UltimaActualizacion = FechaHora,
+				    EstadoCielo = description,
+				    Temperatura_C = todouble(temperature.value),
+				    SensacionTermica_C = todouble(realFeelTemperature.value),
+				    HumedadRelativa_Porc = toint(relativeHumidity),
+				    Viento_kmh = todouble(wind.speed.value),
+				    VientoDireccion = wind.direction.description,
+				    RafagasViento_kmh = todouble(windGust.speed.value),
+				    Visibilidad_km = todouble(visibility.value),
+				    LluviaUltimaHora_mm = todouble(precipitationSummary.pastHour.value),
+				    PuntoRocio_C = todouble(dewPoint.value)
+				| extend 
+				    CondicionRunning = case(
+				        Viento_kmh > 40 or LluviaUltimaHora_mm > 5, ""⚠️ Peligroso"",
+				        Temperatura_C > 32 or SensacionTermica_C < 5, ""⚠️ Extremo"",
+				        ""✅ Buena para correr""
+				    )
+				| order by UltimaActualizacion desc
+				", [])
+				in
+				Source
+				```
+
+	annotation PBI_ResultType = Table
+

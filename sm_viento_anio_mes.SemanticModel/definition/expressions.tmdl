@@ -1,0 +1,11 @@
+expression 'DirectLake - lh_silver_pg' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/1867f4b3-ee9d-43a9-90ed-724dca17ead9/b3812b33-8360-46f7-a885-bc1836264b85", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 3741acce-45ed-4535-88b4-01286b3c6c02
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[fact_viento_ymd]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[fact_estaciones]"}},"objectType":"Table"}]
+

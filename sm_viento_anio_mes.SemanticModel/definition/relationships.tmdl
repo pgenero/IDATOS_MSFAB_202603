@@ -1,0 +1,4 @@
+relationship b76a1142-ed97-79ce-0bbb-3d9d91b06252
+	fromColumn: fact_viento_ym.CodigoNacional
+	toColumn: dim_estaciones.CodigoNacional
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "sm_viento_anio_mes"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "02dba854-9925-8ba9-4946-c6700640dd16"
+  }
+}

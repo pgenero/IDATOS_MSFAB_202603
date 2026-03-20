@@ -1,0 +1,82 @@
+table fact_viento_ym
+	lineageTag: 185f4b08-9023-40a9-92ba-0bcbdbd1c433
+	sourceLineageTag: [dbo].[fact_viento_ym]
+
+	measure 'Velocidad Viento' = SUM( fact_viento_ym[vv_viento_promedio] )
+		lineageTag: 800ca64c-f813-4666-aace-3d2ba834867b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f740e0f-d773-4784-a2f3-58476ab62ea9
+		sourceLineageTag: anio
+		summarizeBy: sum
+		sourceColumn: anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: eb31770a-14bb-48c5-96b2-316c57e39487
+		sourceLineageTag: mes
+		summarizeBy: sum
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column dir_racha1
+		dataType: double
+		lineageTag: 1a84aea7-9b92-46c1-9a66-98b7f6a3ab29
+		sourceLineageTag: dir_racha1
+		summarizeBy: sum
+		sourceColumn: dir_racha1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dir_racha2
+		dataType: double
+		lineageTag: 76bf7189-f611-48d5-89e9-a18d7d065c4d
+		sourceLineageTag: dir_racha2
+		summarizeBy: sum
+		sourceColumn: dir_racha2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vv_viento_promedio
+		dataType: double
+		lineageTag: 1491e0e5-1a3e-42cf-9569-b68f98158e72
+		sourceLineageTag: vv_viento_promedio
+		summarizeBy: sum
+		sourceColumn: vv_viento_promedio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CodigoNacional
+		dataType: double
+		lineageTag: 24c337a2-f53a-45d1-880a-439f08022026
+		sourceLineageTag: CodigoNacional
+		summarizeBy: none
+		sourceColumn: CodigoNacional
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_viento_ym = entity
+		mode: directLake
+		source
+			entityName: fact_viento_ym
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_silver_pg'
+

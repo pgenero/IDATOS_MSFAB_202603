@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"},\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY26SU02",
+            "path": "BaseThemes/CY26SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Página 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "6629f3ab29f3a44f48c9",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"a699daa52011c1730d0b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":45.16644474034621,\"y\":28.97470039946738,\"z\":0,\"width\":1215.2330226364847,\"height\":681.757656458056}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"X\":[{\"queryRef\":\"Sum(fact_viento_ym.dir_racha1)\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(fact_viento_ym.dir_racha2)\"}],\"Category\":[{\"queryRef\":\"fact_viento_ym.anio\",\"active\":true}],\"Series\":[{\"queryRef\":\"fact_viento_ym.mes\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_viento_ym\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"dir_racha1\"}},\"Function\":0},\"Name\":\"Sum(fact_viento_ym.dir_racha1)\",\"NativeReferenceName\":\"Suma de dir_racha1\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"dir_racha2\"}},\"Function\":0},\"Name\":\"Sum(fact_viento_ym.dir_racha2)\",\"NativeReferenceName\":\"Suma de dir_racha2\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"anio\"},\"Name\":\"fact_viento_ym.anio\",\"NativeReferenceName\":\"anio\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"mes\"},\"Name\":\"fact_viento_ym.mes\",\"NativeReferenceName\":\"mes\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"fact_viento_ym\"}},\"Property\":\"anio\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_viento_ym\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"anio\"}},\"Right\":{\"Literal\":{\"Value\":\"2021L\"}}}}}}}]},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false}]",
+          "height": 681.76,
+          "width": 1215.23,
+          "x": 45.17,
+          "y": 28.97,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
